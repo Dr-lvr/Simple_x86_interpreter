@@ -4,7 +4,7 @@ Implementation of a procedural interpreter for modified assembly language (21 to
 
 It supports recursion, jumps, procedures and related calls.
 
-ISTRUCTION SET
+INSTRUCTION SET
 
 -> mov x, y - copy y (either an integer or the value of a register) into register x.
 
@@ -44,6 +44,6 @@ ISTRUCTION SET
 
 -> msg 'Register: ', x - this instruction stores the output of the program. It may contain text strings (delimited by single quotes) and registers. The number of arguments isn't limited and will vary, depending on the program.
 
--> end - this instruction indicates that the program ends correctly, so the stored output is returned (if the program terminates without this instruction it should return the default output: see below).
+-> end - this instruction indicates that the program ends correctly, so the stored output is returned..
 
 -> ; comment - comments should not be taken in consideration during the execution of the program.
