@@ -1,7 +1,7 @@
-# 💻 Simple x86 Interpreter
+# Simple x86 Interpreter
 
 This project implements a **procedural interpreter** for a modified assembly-like language.  
-It features a concise **21-token instruction set** designed for procedural programming.
+It features a **21-token instruction set** designed for procedural programming.
 
 The language supports advanced concepts such as:
 
@@ -11,7 +11,7 @@ The language supports advanced concepts such as:
 
 ---
 
-## 💡 Key Concepts & Operands
+## Key Concepts & Operands
 
 - **`x`** – Always a register name (destination operand).  
 - **`y`** – Either an integer literal or the value of another register.  
@@ -19,7 +19,7 @@ The language supports advanced concepts such as:
 
 ---
 
-# 🚀 Instruction Set (21 Tokens)
+# Instruction Set (21 Tokens)
 
 ## 1. Arithmetic and Data Movement
 
