@@ -1,49 +1,211 @@
-# Simple_x86_interpreter
+💻 Simple x86 Interpreter
 
-Implementation of a procedural interpreter for modified assembly language (21 tokens)
+This project implements a procedural interpreter for a modified assembly-like language. It features a concise 21-token instruction set designed for procedural programming.
 
-It supports recursion, jumps, procedures and related calls.
+The language supports advanced programming concepts, including recursion, unconditional/conditional jumps, and subroutines (procedures) managed by call and ret instructions.
 
-INSTRUCTION SET
+💡 Key Concepts & Operands
 
--> mov x, y - copy y (either an integer or the value of a register) into register x.
+x: Always a register name (the destination operand).
 
--> inc x - increase the content of register x by one.
+y: Can be either an integer literal or the value of another register.
 
--> dec x - decrease the content of register x by one.
+lbl: A label identifier defined using the label: syntax.
 
--> add x, y - add the content of the register x with y (either an integer or the value of a register) and stores the result in x (i.e. register[x] += y).
+🚀 Instruction Set (21 Tokens)
 
--> sub x, y - subtract y (either an integer or the value of a register) from the register x and stores the result in x (i.e. register[x] -= y).
+1. Arithmetic and Data Movement
 
--> mul x, y - same with multiply (i.e. register[x] *= y).
+These instructions handle register manipulation and mathematical operations. Note that div performs integer division.
 
--> div x, y - same with integer division (i.e. register[x] /= y).
+Instruction
 
--> label: - define a label position (label = identifier + ":", an identifier being a string that does not match any other command). Jump commands and call are aimed to these labels positions in the program.
+Syntax
 
--> jmp lbl - jumps to the label lbl
+Description
 
--> cmp x, y - compares x (either an integer or the value of a register) and y (either an integer or the value of a register). The result is used in the conditional jumps (jne, je, jge, jg, jle and jl)
+Equivalent Operation
 
--> jne lbl - jump to the label lbl if the values of the previous cmp were not equal.
+mov
 
--> je lbl - jump to the label lbl if the values of the previous cmp command were equal.
+mov x, y
 
--> jge lbl - jump to the label lbl if x was greater or equal than y in the previous cmp command.
+Copies the value of $y$ into register $x$.
 
--> jg lbl - jump to the label lbl if x was greater than y in the previous cmp command.
+$x \leftarrow y$
 
--> jle lbl - jump to the label lbl if x was less or equal than y in the previous cmp command.
+inc
 
--> jl lbl - jump to the label lbl if x was less than y in the previous cmp command.
+inc x
 
--> call lbl - call to the subroutine identified by lbl. When a ret is found in a subroutine, the instruction pointer should return to the instruction next to this call command.
+Increases the content of register $x$ by one.
 
--> ret - when a ret is found in a subroutine, the instruction pointer should return to the instruction that called the current function.
+$x \leftarrow x + 1$
 
--> msg 'Register: ', x - this instruction stores the output of the program. It may contain text strings (delimited by single quotes) and registers. The number of arguments isn't limited and will vary, depending on the program.
+dec
 
--> end - this instruction indicates that the program ends correctly, so the stored output is returned..
+dec x
 
--> ; comment - comments should not be taken in consideration during the execution of the program.
+Decreases the content of register $x$ by one.
+
+$x \leftarrow x - 1$
+
+add
+
+add x, y
+
+Adds $y$ to $x$ and stores the result in $x$.
+
+$x \leftarrow x + y$
+
+sub
+
+sub x, y
+
+Subtracts $y$ from $x$ and stores the result in $x$.
+
+$x \leftarrow x - y$
+
+mul
+
+mul x, y
+
+Multiplies $x$ by $y$ and stores the result in $x$.
+
+$x \leftarrow x \times y$
+
+div
+
+div x, y
+
+Performs integer division $x / y$ and stores the result in $x$.
+
+$x \leftarrow x // y$
+
+2. Control Flow and Subroutines
+
+These commands manage the program's flow of execution, including jumps and procedure calls.
+
+Instruction
+
+Syntax
+
+Description
+
+label:
+
+identifier:
+
+Defines a target position for jump and call commands.
+
+jmp
+
+jmp lbl
+
+Unconditionally jumps to the instruction immediately following the label $lbl$.
+
+call
+
+call lbl
+
+Calls the subroutine identified by $lbl$. The return address (the next instruction) is pushed onto the stack.
+
+ret
+
+ret
+
+Returns from the current subroutine. The instruction pointer returns to the address saved by the most recent call.
+
+3. Conditional Jumps and Comparison
+
+All conditional jumps rely on the result of the immediately preceding cmp instruction.
+
+Instruction
+
+Syntax
+
+Description
+
+Condition (based on previous cmp x, y)
+
+cmp
+
+cmp x, y
+
+Compares $x$ (integer or register) and $y$ (integer or register). Sets internal comparison flags.
+
+N/A
+
+jne
+
+jne lbl
+
+Jump if Not Equal.
+
+$x \neq y$
+
+je
+
+je lbl
+
+Jump if Equal.
+
+$x = y$
+
+jge
+
+jge lbl
+
+Jump if Greater or Equal.
+
+$x \ge y$
+
+jg
+
+jg lbl
+
+Jump if Greater.
+
+$x > y$
+
+jle
+
+jle lbl
+
+Jump if Less or Equal.
+
+$x \le y$
+
+jl
+
+jl lbl
+
+Jump if Less.
+
+$x < y$
+
+4. Utility and Program Termination
+
+Instruction
+
+Syntax
+
+Description
+
+msg
+
+msg 'Text:', x, ' End'
+
+Output Generation. Appends text strings (delimited by single quotes) and/or register values to the program's output buffer.
+
+end
+
+end
+
+Program Termination. Indicates that the program has completed successfully and the interpreter should return the stored output.
+
+; comment
+
+; Any text here
+
+Comments. Lines starting with a semicolon (;) are ignored during execution.
