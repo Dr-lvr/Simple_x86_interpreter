@@ -74,6 +74,3 @@ Conditional jumps depend on the result of the immediately preceding `cmp`.
 | `end`      | `end`                      | Ends execution and returns output. |
 | `; comment`| `; ...`                    | Comments (ignored by interpreter). |
 
----
-
-Feel free to ask if you'd like a **README.md** version, code examples, or interpreter diagrams!
